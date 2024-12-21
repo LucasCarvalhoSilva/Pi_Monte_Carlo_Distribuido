@@ -34,9 +34,9 @@ def connect_to_server():
     port = 5000
     
     try:
-        startTime = time.time()
         print("=> Cálculo de Pi pelo Método de Monte Carlo <=")
         total_points = int(input("Digite a quantidade de pontos que devem ser simulados: "))
+        startTime = time.time()
         
         num_threads = 5
         points_per_thread = total_points // num_threads
