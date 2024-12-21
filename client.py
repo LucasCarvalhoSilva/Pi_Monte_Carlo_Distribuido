@@ -1,5 +1,6 @@
 import socket
 import threading
+import time
 from queue import Queue
 
 def worker(host, port, points_to_calculate, result_queue):
@@ -33,6 +34,7 @@ def connect_to_server():
     port = 5000
     
     try:
+        startTime = time.time()
         print("=> Cálculo de Pi pelo Método de Monte Carlo <=")
         total_points = int(input("Digite a quantidade de pontos que devem ser simulados: "))
         
@@ -76,9 +78,12 @@ def connect_to_server():
         
         if pontos_totais > 0:
             pi_final = 4 * pontos_dentro_total / pontos_totais
+            endTime = time.time()
             print(f"\nResultado final com {pontos_totais} pontos:")
             print(f"Valor estimado de Pi: {pi_final:.6f}")
-            
+            executionTime = (endTime - startTime) * 1000
+            print("Tempo de execução =>", executionTime)
+    
     except ConnectionRefusedError:
         print("Não foi possível conectar ao servidor. Verifique se ele está em execução.")
     except Exception as e:
